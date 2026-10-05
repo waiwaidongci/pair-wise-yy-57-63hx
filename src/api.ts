@@ -1,10 +1,12 @@
 import axios from 'axios'
-import { devices, routes, seedCases, seedExecutions } from './mock'
+import { devices, routes, seedCases, seedChanges, seedExecutions, seedSnapshots } from './mock'
 
 export const stationApi = axios.create({
   baseURL: '/api',
   adapter: async (config) => ({
-    data: config.url === '/station' ? { devices, routes, cases: seedCases, executions: seedExecutions, version: 'v26.10' } : {},
+    data: config.url === '/station'
+      ? { devices, routes, cases: seedCases, executions: seedExecutions, snapshots: seedSnapshots, changes: seedChanges, currentSnapshotId:'SNAP-2610' }
+      : {},
     status: 200,
     statusText: 'OK',
     headers: {},
